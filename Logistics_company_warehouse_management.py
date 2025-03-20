@@ -422,15 +422,15 @@ class WarehouseApp:
 
         if result:
             role = result[0]
-            self.user = {"username": username, "role": role}  # Kullanıcıyı sakla
+            self.user = {"username": username, "role": role}  
 
             self.login_window.destroy()
             self.root.deiconify()
-            self.root.geometry("600x400")  # Pencere boyutunu belirle
+            self.root.geometry("600x400")  
             
-            print(dir(self))  # Self içinde hangi metotlar var, kontrol et
+            print(dir(self))  
             
-            self.create_widgets()  # UI elemanlarını oluştur
+            self.create_widgets()  
             messagebox.showinfo("Success", f"Login successful! Welcome, {username} ({role}).")
         else:
             messagebox.showerror("Error", "Invalid username or password")
@@ -600,7 +600,7 @@ class WarehouseApp:
             messagebox.showwarning("Stock Error", "Not enough stock available.")
             return
 
-        # Stoktan düş ve siparişi kaydet
+        
         new_stock = available_stock - quantity
         self.cursor.execute("UPDATE products SET stock=? WHERE id=?", (new_stock, product_id))
         self.cursor.execute("INSERT INTO orders (product_id, quantity) VALUES (?, ?)", (product_id, quantity))
